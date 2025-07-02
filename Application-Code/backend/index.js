@@ -1,3 +1,4 @@
+require('dotenv').config();
 const tasks = require("./routes/tasks");
 const connection = require("./db");
 const cors = require("cors");
@@ -10,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/ok', (req, res) => {
-    res.status(200).send('ok')
+    res.status(200).send('ok....')
   })
 
 app.use("/api/tasks", tasks);
