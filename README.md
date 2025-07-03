@@ -14,7 +14,7 @@ The challenge involves deploying a Three-Tier Web Application using ReactJS, Nod
 
 ## Challenge Steps
 - [Application Code](#application-code)
-- [Docker & Docker-Compose](#jDocker & Docker-Compose)
+- [Docker & Docker-Compose](#jDocker-&-Docker-Compose)
 - [Kubernetes Manifests Files](#kubernetes-manifests-files)
 - [Project Details](#project-details)
 
