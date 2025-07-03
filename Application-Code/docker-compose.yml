@@ -1,0 +1,44 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+     - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - todo-network
+    restart: always
+
+  backend:
+    image: dattarahegaonkar09/backend-of-3-tier-application
+    container_name: backend
+    ports:
+     - "3500:3500"
+    environment:
+      - PORT=3500
+      - MONGO_CONN_STR=mongodb://mongodb:27017/todo
+    networks:
+      - todo-network
+    depends_on:
+      - mongodb
+
+  frontend:
+    image: dattarahegaonkar09/frontend-of-3-tier-application
+    container_name: frontend
+    ports:
+     - "3000:3000"
+    environment:
+     - REACT_APP_BACKEND_URL=http://localhost:3500/api/tasks
+    networks:
+      - todo-network
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:
+    external: true   # Use this ONLY if you created it beforehand
+
+networks:
+  todo-network:
+    external: true   # This assumes you already created this network
