@@ -20,8 +20,37 @@ The `Application-Code` directory contains the source code for the Three-Tier Web
 ## Docker
 you'll find `Dockerfiles` for the different components of the application. These Dockerfiles define the containerized environments for the frontend, backend, and database services, enabling consistent and portable deployments across environments.
 
+1. Build & Run the Database
+```
+docker run -d -p 27017:27017 -v <Name of the volume>:<Mounting point of created volume> --network todo-network --name mongodb  mongo:latest
+```
+
+2. Build Backend
+```
+docker build -t backend-of-3-tier-application .
+```
+
+3. Run Backend
+```
+docker run -d -p 3500:3500 -e MONGO_CONN_STR=mongodb://mongodb:27017/todo --network todo-network --name backend-app backend:latest
+```
+
+4. Build Frontend
+```
+ docker build -t frontend-of-3-tier-application . 
+```
+
+5. Run Frontend
+```
+docker run -d -p 3000:3000 --network todo-network --name frontend frontend-of-3-tier-application:latest    
+```
+
 ## Docker-Compose
 you'll find `docker-compose.yml` files that orchestrate multiple Docker containers. This setup allows you to easily run the entire three-tier application stack with a single command, streamlining local development and testing workflows.
+
+```
+docker-compose up -d
+```
 
 ## Kubernetes Manifests Files
 The `Kubernetes-Manifests-Files` directory holds Kubernetes manifests for deploying your application on AWS EKS. Understand and customize these files to suit your project needs.
