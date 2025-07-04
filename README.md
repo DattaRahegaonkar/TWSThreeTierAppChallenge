@@ -53,7 +53,7 @@ docker-compose up -d
 ```
 
 ## Kubernetes Manifests Files
-The `Kubernetes-Manifests-Files` directory holds Kubernetes manifests for deploying your application on AWS EKS. Understand and customize these files to suit your project needs.
+The `Kubernetes-Manifests-Files` directory holds Kubernetes manifests for deploying your application on Kubernetes Kind cluster using ingress. Understand and customize these files to suit your project needs.
 
 ## Project Details
 🛠️ **Tools Explored:**
