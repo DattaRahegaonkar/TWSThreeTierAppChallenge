@@ -5,60 +5,48 @@ This repository hosts the `#TWSThreeTierAppChallenge` for the TWS community.
 The challenge involves deploying a Three-Tier Web Application using ReactJS, NodeJS, and MongoDB, with deployment on AWS EKS. Participants are encouraged to deploy the application, add creative enhancements, and submit a Pull Request (PR). Merged PRs will earn exciting prizes!
 
 **Get The Challenge here**
+
+[![YouTube Video](https://img.youtube.com/vi/tvWQRTbMS1g/maxresdefault.jpg)](https://youtu.be/tvWQRTbMS1g?si=eki-boMemxr4PU7-)
+
+## Prerequisites
+- Basic knowledge of Docker, and AWS services.
+- An AWS account with necessary permissions.
+
 ## Challenge Steps
 - [Application Code](#application-code)
-- [Docker & Docker-Compose](#jDocker-&-Docker-Compose)
+- [Jenkins Pipeline Code](#jenkins-pipeline-code)
+- [Jenkins Server Terraform](#jenkins-server-terraform)
 - [Kubernetes Manifests Files](#kubernetes-manifests-files)
 - [Project Details](#project-details)
 
 ## Application Code
 The `Application-Code` directory contains the source code for the Three-Tier Web Application. Dive into this directory to explore the frontend and backend implementations.
 
-## Docker
-you'll find `Dockerfiles` for the different components of the application. These Dockerfiles define the containerized environments for the frontend, backend, and database services, enabling consistent and portable deployments across environments.
+## Jenkins Pipeline Code
+In the `Jenkins-Pipeline-Code` directory, you'll find Jenkins pipeline scripts. These scripts automate the CI/CD process, ensuring smooth integration and deployment of your application.
 
-1. Build & Run the Database
-```
-docker run -d -p 27017:27017 -v <Name of the volume>:<Mounting point of created volume> --network todo-network --name mongodb  mongo:latest
-```
-
-2. Build Backend
-```
-docker build -t backend-of-3-tier-application .
-```
-
-3. Run Backend
-```
-docker run -d -p 3500:3500 -e MONGO_CONN_STR=mongodb://mongodb:27017/todo --network todo-network --name backend-app backend:latest
-```
-
-4. Build Frontend
-```
- docker build -t frontend-of-3-tier-application . 
-```
-
-5. Run Frontend
-```
-docker run -d -p 3000:3000 --network todo-network --name frontend frontend-of-3-tier-application:latest    
-```
-
-## Docker-Compose
-you'll find `docker-compose.yml` files that orchestrate multiple Docker containers. This setup allows you to easily run the entire three-tier application stack with a single command, streamlining local development and testing workflows.
-
-```
-docker-compose up -d
-```
+## Jenkins Server Terraform
+Explore the `Jenkins-Server-TF` directory to find Terraform scripts for setting up the Jenkins Server on AWS. These scripts simplify the infrastructure provisioning process.
 
 ## Kubernetes Manifests Files
-The `Kubernetes-Manifests-Files` directory holds Kubernetes manifests for deploying your application on Kubernetes Kind cluster using ingress. Understand and customize these files to suit your project needs.
+The `Kubernetes-Manifests-Files` directory holds Kubernetes manifests for deploying your application on AWS EKS. Understand and customize these files to suit your project needs.
 
 ## Project Details
 🛠️ **Tools Explored:**
-- Jenkins,Docker, Kubernetes, Kubectl, and more for CI/CD setup
+- Terraform & AWS CLI for AWS infrastructure
+- Jenkins, Sonarqube, Terraform, Kubectl, and more for CI/CD setup
+- Helm, Prometheus, and Grafana for Monitoring
+- ArgoCD for GitOps practices
+
+🚢 **High-Level Overview:**
+- IAM User setup & Terraform magic on AWS
+- Jenkins deployment with AWS integration
+- EKS Cluster creation & Load Balancer configuration
+- Private ECR repositories for secure image management
+- Helm charts for efficient monitoring setup
+- GitOps with ArgoCD - the cherry on top!
 
 📈 **The journey covered everything from setting up tools to deploying a Three-Tier app, ensuring data persistence, and implementing CI/CD pipelines.**
-
-## Deploying On EKS Cluster
 
 ## Getting Started
 To get started with this project, refer to our [comprehensive guide](https://amanpathakdevops.medium.com/advanced-end-to-end-devsecops-kubernetes-three-tier-project-using-aws-eks-argocd-prometheus-fbbfdb956d1a) that walks you through IAM user setup, infrastructure provisioning, CI/CD pipeline configuration, EKS cluster creation, and more.
