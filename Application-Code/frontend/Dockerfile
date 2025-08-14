@@ -7,6 +7,8 @@ WORKDIR /app
 # Copy package files and install dependencies
 COPY package*.json ./
 RUN npm install
+# RUN npm audit fix --force
+# RUN npm install react-scripts@5.0.1 --save-dev
 
 # Copy source code and build the app
 COPY . .
